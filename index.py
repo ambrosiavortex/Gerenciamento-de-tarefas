@@ -52,26 +52,21 @@ def add_task():
 
         if day:
             title = input("Adicione um título curto para a tarefa: ")
-            task = input("Descreva de forma sucinta a tarefa que deseja adicionar (max. 15 palavras): ")
-            days[days].append({"titulo": title, "tarefa": task})
+            task = input("Descreva de forma sucinta a tarefa que deseja adicionar (max. 10 palavras): ")
+            days[day].append({"titulo": title, "tarefa": task})
             print(f"Tarefa adicionada com sucesso no(a) {day}!")
             break
         else:
             print("Opção inválida. Tente novamente.")
-            
-        dados = {
-            "titulo": title,
-            "tarefa": task}
-        return dados
 
 # Função para visualizar as tarefas
-def view_tasks(dados):
+def view_tasks():
     print("\nTarefas da semana: ")
     for day, tasks in days.items():
         print(f"\n{day.capitalize()}:")
         if tasks:
             for task in tasks:
-                print(f"- {task[title]}: {task[tarefa]}")
+                print(f"- {task["tarefa"]}: {task["tarefa"]}")
         else:
             print("Nenhuma tarefa para este dia.")
     print()
