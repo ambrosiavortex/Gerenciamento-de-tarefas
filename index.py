@@ -79,7 +79,7 @@ def remove_task():
             print(f"\nTarefas em {day_choice.capitalize()}:")
             for i, task in enumerate(days[day_choice]):
                 print(f"{i +1}. {task["titulo"]} - {task["tarefa"]}")
-                task_index = int(input("Digite o número da tarefa que deve ser excluída:"))
+                task_index = int(input("Digite o número da tarefa que deve ser excluída:")) -1
                 if 0<= task_index < len (days[day_choice]):
                     removed_task = days[day_choice].pop(task_index)
                     print(f"Tarefa '{removed_task["titulo"]} ' removida com sucesso!")
