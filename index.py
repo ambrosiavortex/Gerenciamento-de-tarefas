@@ -58,15 +58,20 @@ def add_task():
             break
         else:
             print("Opção inválida. Tente novamente.")
+            
+        dados = {
+            "titulo": title,
+            "tarefa": task}
+        return dados
 
 # Função para visualizar as tarefas
-def view_tasks():
+def view_tasks(dados):
     print("\nTarefas da semana: ")
     for day, tasks in days.items():
         print(f"\n{day.capitalize()}:")
         if tasks:
             for task in tasks:
-                print(f"- {task[titulo]}: {task[tarefa]}")
+                print(f"- {task[title]}: {task[tarefa]}")
         else:
             print("Nenhuma tarefa para este dia.")
     print()
