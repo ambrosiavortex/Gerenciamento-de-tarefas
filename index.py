@@ -66,7 +66,7 @@ def view_tasks():
         print(f"\n{day.capitalize()}:")
         if tasks:
             for task in tasks:
-                print(f"- {task["tarefa"]}: {task["tarefa"]}")
+                print(f"- {task["titulo"]}: {task["tarefa"]}")
         else:
             print("Nenhuma tarefa para este dia.")
     print()
