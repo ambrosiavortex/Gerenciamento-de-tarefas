@@ -1,6 +1,7 @@
 print('==== Boas-Vindas à sua agenda digital! ====')
 
-days = {
+#Dicionário que armazena os dias da semana com listas vazias.
+dias = {
     "segunda": [],
     "terça": [],
     "quarta": [],
@@ -17,8 +18,8 @@ def menu():
     print("2. Ver tarefas")
     print("3. Remover tarefa")
     print("0. Sair")
-    choice = input("Escolha uma opção: ")
-    return choice
+    escolha = input("Escolha uma opção: ")
+    return escolha
 
 # Função para adicionar tarefa
 def add_task():
@@ -31,14 +32,14 @@ def add_task():
         print("5. Sexta")
         print("6. Sábado")
         print("7. Domingo")
-        print("0. Sair")
+        print("0. Sair") # Loop while true que mostra ao usuário um menu com as opções disponíveis.
 
-        day_choice = input("Digite sua escolha: ")
+        dia = input("Digite sua escolha: ")
 
-        if day_choice == "0":
+        if dia == "0":
             break
 
-        day_map = {
+        dias_map = {
             "1": "segunda",
             "2": "terça",
             "3": "quarta",
@@ -48,12 +49,13 @@ def add_task():
             "7": "domingo"
         }
 
-        day = day_map.get(day_choice)
+        day = dias_map.get(dia)
 
+        # Aqui, se o dia for válido a tarefa é adicionada ao dicionário "dias" no dia correspondente.
         if day:
             title = input("Adicione um título curto para a tarefa: ")
             task = input("Descreva de forma sucinta a tarefa que deseja adicionar (max. 10 palavras): ")
-            days[day].append({"titulo": title, "tarefa": task})
+            dias[dia].append({"titulo": title, "tarefa": task})
             print(f"Tarefa adicionada com sucesso no(a) {day}!")
             break
         else:
@@ -62,7 +64,7 @@ def add_task():
 # Função para visualizar as tarefas
 def view_tasks():
     print("\nTarefas da semana: ")
-    for day, tasks in days.items():
+    for day, tasks in dias.items(): # O for in itera sobre cada item do dicionário "dias".
         print(f"\n{day.capitalize()}:")
         if tasks:
             for task in tasks:
@@ -73,33 +75,33 @@ def view_tasks():
 
 # Função para remover tarefa
 def remove_task():
-    day_choice = input("\nEscolha um dia da semana para remover uma tarefa (segunda, terça...): ").lower()
-    if day_choice in days:
-        if days[day_choice]:
-            print(f"\nTarefas em {day_choice.capitalize()}:")
-            for i, task in enumerate(days[day_choice]):
+    day_escolha = input("\nEscolha um dia da semana para remover uma tarefa (segunda, terça...): ").lower()
+    if day_escolha in days:
+        if days[day_escolha]:
+            print(f"\nTarefas em {day_escolha.capitalize()}:")
+            for i, task in enumerate(days[day_escolha]):
                 print(f"{i +1}. {task["titulo"]} - {task["tarefa"]}")
                 task_index = int(input("Digite o número da tarefa que deve ser excluída:")) -1
-                if 0<= task_index < len (days[day_choice]):
-                    removed_task = days[day_choice].pop(task_index)
+                if 0<= task_index < len (days[day_escolha]):
+                    removed_task = days[day_escolha].pop(task_index)
                     print(f"Tarefa '{removed_task["titulo"]} ' removida com sucesso!")
                 else:
                     print("Número inválido. Tente novamente.")
             else:
-                print(f"Nenhuma tarefa para {day_choice}.")
+                print(f"Nenhuma tarefa para {day_escolha}.")
     else:
         print("Dia inválido. Tente novamente.")
 
 # Loop principal
 while True:
-    choice = menu()
-    if choice == "1":
+    escolha = menu()
+    if escolha == "1":
         add_task()
-    elif choice == "2":
+    elif escolha == "2":
         view_tasks()   
-    elif choice == "3":
+    elif escolha == "3":
         remove_task()
-    elif choice == "0":
+    elif escolha == "0":
         break
     else:
         print("Opção inválida. Tente novamente.")         
